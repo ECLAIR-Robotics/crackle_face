@@ -185,7 +185,9 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/emotion.o
+GENERATED += $(OBJDIR)/tester.o
 OBJECTS += $(OBJDIR)/emotion.o
+OBJECTS += $(OBJDIR)/tester.o
 
 # Rules
 # #############################################
@@ -249,9 +251,12 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/emotion.o: ../../src/emotion.c
+$(OBJDIR)/emotion.o: ../../src/emotion.cpp
 	@echo "$(notdir $<)"
-	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/tester.o: ../../src/tester.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))
